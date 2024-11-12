@@ -1,0 +1,8 @@
+<odoo>
+    <template id="assets_frontend" inherit_id="website.assets_frontend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript"
+                    src="/sales_modification/static/src/js/gift_note.js"/>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	<report
+			id="action_report_cc_invoice"
+			string="VAT Invoice فاتورة ضريبية"
+			model="account.move"
+			report_type="qweb-pdf"
+			file="cc_invoice.report_cc_invoice"
+			name="cc_invoice.report_cc_invoice"
+			print_report_name="'VAT Invoice -%s' %(object.partner_id.name)"/>
+
+	</data>
+</odoo>

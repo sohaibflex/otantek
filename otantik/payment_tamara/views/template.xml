@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+    <!-- See LICENSE file for full copyright and licensing details. -->
+      <data>
+
+        <template id="tamara_widget_assets_frontend" inherit_id="website.assets_frontend" name="Product and Installment Plan Widget">
+            <xpath expr="." position="inside">
+                <script src="/payment_tamara/static/src/js/product_widget.js" type="text/javascript"></script>
+            </xpath>
+        </template>
+        <template id="payment_tamara_product_widget" inherit_id="website_sale.product_price">
+            <xpath expr="//div//h4[hasclass('css_editable_mode_hidden')]" position="after">
+                <t t-if="request.env['payment.acquirer'].sudo().search([('provider','=','tamara'),('state','in',['test','enabled'])]) and request.env['website'].get_current_website().product_widget">
+                    <script src="https://cdn.tamara.co/widget/product-widget.min.js"></script>
+                    <t t-set="current_website" t-value="request.env['website'].get_current_website()"/>
+                    <t t-set="session_lang" t-value="request.context.get('lang','en')"/>
+                    <t t-set="currency" t-value="request.env['website'].get_current_website().pricelist_id.currency_id.name"/>
+                    <div class="tamara-product-widget mb-2"
+                        t-att-data-lang="'en' if session_lang.startswith('en') else 'ar'"
+                        t-att-data-price="combination_info['price']"
+                        t-att-data-currency= "currency if currency else 'SAR'"
+                        t-att-data-payment-type= "current_website.data_payment_type  if current_website.data_payment_type else 'installment'"
+                        t-att-data-disable-installment=  "'true'  if current_website.data_disable_installment else 'false'" 
+                        t-att-data-disable-paylater= "'true'  if current_website.data_disable_paylater else 'false'"
+                        t-att-data-installment-minimum-amount= "current_website.data_installment_minimum_amount  if current_website.data_installment_minimum_amount else 99"
+                        t-att-data-installment-maximum-amount=  "current_website.data_installment_maximum_amount  if current_website.data_installment_maximum_amount else 3000"
+                        t-att-data-installment-available-amount=  "current_website.data_installment_available_amount  if current_website.data_installment_available_amount else 99"
+                        t-att-data-pay-later-max-amount=  "current_website.data_pay_later_max_amount  if current_website.data_pay_later_max_amount else 0"
+                        t-att-data-number-of-installments= "current_website.data_number_of_installments  if current_website.data_number_of_installments else 2"
+                    >
+                    </div>
+                </t>
+            </xpath>
+        </template>
+
+
+        <template id="payment_tamara_payment_checkout_widgets" inherit_id="payment.payment_tokens_list">
+            <xpath expr="//form[@t-if='pms or acquirers']//div[@class='card']/t[@t-foreach='acquirers']/div[hasclass('o_payment_acquirer_select')]" position="inside">
+                <t t-if="acq.provider=='tamara'">
+                    <script src="https://cdn.tamara.co/widget/installment-plan.min.js"></script>
+                    <t t-set="current_website" t-value="request.env['website'].get_current_website()"/>
+                    <t t-set="session_lang" t-value="request.context.get('lang','en')"/>
+                    <t t-set="currency" t-value="request.env['website'].get_current_website().pricelist_id.currency_id.name"/>
+                    <div
+                        class="tamara-installment-plan-widget"
+                        t-att-data-lang="'en' if session_lang.startswith('en') else 'ar'"
+                        t-att-data-price= "1000"
+                        t-att-data-currency= "currency if currency else 'SAR'"
+                        t-att-data-disable-installment=  "'true'  if current_website.data_disable_installment else 'false'" 
+                        t-att-data-installment-minimum-amount= "current_website.data_installment_minimum_amount  if current_website.data_installment_minimum_amount else 99"
+                        t-att-data-installment-maximum-amount=  "current_website.data_installment_maximum_amount  if current_website.data_installment_maximum_amount else 3000"
+                        t-att-data-installment-available-amount=  "current_website.data_installment_available_amount  if current_website.data_installment_available_amount else 99"
+                        t-att-data-number-of-installments= "current_website.data_number_of_installments  if current_website.data_number_of_installments else 2"
+                        >
+                    </div>
+                </t>
+
+                </xpath>
+        </template>
+
+    </data>
+</odoo>

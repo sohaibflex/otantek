@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="inherit_payment_acquirer_form_view" model="ir.ui.view">
+        <field name="name">inherit.payment.acquirer.form.view</field>
+        <field name="model">payment.acquirer</field>
+        <field name="inherit_id" ref="payment.acquirer_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='country_ids']" position="after">
+                <field name="payment_term_id" />
+            </xpath>
+        </field>
+    </record>
+    </data>
+</odoo>

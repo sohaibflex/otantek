@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <template id="assets_frontend" name="tabby assets" inherit_id="web.assets_frontend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/vit_payment_tabby/static/src/js/lib/tabby-card.js"></script>
+            <script type="text/javascript" src="/vit_payment_tabby/static/src/js/lib/tabby-promo.js"></script>
+        </xpath>
+    </template>
+
+</odoo>

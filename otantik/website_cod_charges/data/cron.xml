@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.cron" id="payment_cash_on_delivery">
+            <field name="name">Payment: Set Cash on Delivery</field>
+            <field name="model_id" ref="payment.model_payment_acquirer" />
+            <field name="state">code</field>
+            <field name="code">model._cron_set_is_cod()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active">False</field>
+        </record>
+
+    </data>
+</odoo>

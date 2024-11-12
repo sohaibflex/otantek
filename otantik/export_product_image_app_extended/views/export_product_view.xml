@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <record id="export_product_image_app.action_export_product" model="ir.actions.act_window">
+        <field name="name">Export Products with Images</field>
+        <field name="res_model">export.product</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="groups_id" eval="[(4, ref('export_product_image_app.group_export_product'))]"/>
+        <field name="binding_model_id" ref="stock.model_product_product" />
+        <field name="binding_type">report</field>
+    </record>
+    </data>
+</odoo>

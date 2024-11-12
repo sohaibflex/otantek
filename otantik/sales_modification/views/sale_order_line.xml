@@ -1,0 +1,13 @@
+
+<!--<odoo>-->
+
+<!--    <record id="sequence_line_action" model="ir.actions.server">-->
+<!--        <field name="name">Sequence line action</field>-->
+<!--        <field name="model_id" ref="model_sale_order_line"/>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="code">model.compute_previous_sequence()</field>-->
+<!--    </record>-->
+
+<!--    <menuitem id="Line_Sequence" name="Sequence Line" parent="sale.sale_order_menu"-->
+<!--        action="sequence_line_action"/>-->
+<!--</odoo>-->

@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+        <!--
+                <template id="listing">
+                  <ul>
+                    <li t-foreach="objects" t-as="object">
+                      <a t-attf-href="#{ root }/objects/#{ object.id }">
+                        <t t-esc="object.display_name"/>
+                      </a>
+                    </li>
+                  </ul>
+                </template>
+                <template id="object">
+                  <h1><t t-esc="object.display_name"/></h1>
+                  <dl>
+                    <t t-foreach="object._fields" t-as="field">
+                      <dt><t t-esc="field"/></dt>
+                      <dd><t t-esc="object[field]"/></dd>
+                    </t>
+                  </dl>
+                </template>
+        -->
+
+        <template id='gift_form' name='Gift form'>
+            <form action="/shop/gift"
+                  method="post" name="gift_note">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <div class="input-group w-100">
+                    <input name="gift_note" class="form-control" type="text" placeholder="Gift Note..."
+                           t-att-value="website_sale_order.customer_notes or None"/>
+
+                    <div class="input-group-append">
+                        <a style="background-color: #CBAB71 !important;color: #fff !important;" href="#" role="button" class="btn btn-secondary a-submit te_theme_button">Apply</a>
+                    </div>
+                </div>
+                <span t-if="website_sale_order.customer_notes" style="margin-top:5px;color:#CBAB71;float: left;">Notes is applied !</span>
+            </form>
+        </template>
+        <template id="total_inherit" inherit_id="website_sale.total" customize_show="True" name="Gift">
+            <xpath expr="//div[@id='cart_total']//table/tr[last()]" position="after">
+                <tr t-if="website_sale_order">
+<!--                <tr >-->
+                    <td colspan="3" class="text-center text-xl-right border-0">
+                        <span >
+                            <a href="#" class="show_gift_text">Send this order as a gift</a>
+                                <div t-if="website_sale_order.customer_notes" class="input_main_gift_note">
+                                    <t t-call="sales_modification.gift_form"/>
+                                </div>
+                                <div t-else="" class="input_main_gift_note d-none">
+                                    <t t-call="sales_modification.gift_form"/>
+                                </div>
+                        </span>
+                    </td>
+                </tr>
+            </xpath>
+        </template>
+
+        <template id="sort_ept" inherit_id="website_sale.sort">
+            <xpath expr="//t[@t-set='name_desc_label']" position="after">
+                <t t-set="discount_label">Discountable</t>
+            </xpath>
+            <xpath expr="//t[@t-set='website_sale_sortable']" position="replace">
+                <t t-set="website_sale_sortable" t-value="[
+                (list_price_desc_label, 'list_price desc'),
+                (list_price_asc_label, 'list_price asc'),
+                (name_asc_label, 'name asc'),
+                (name_desc_label, 'name desc'),
+                (discount_label, 'discount_value desc')
+            ]"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

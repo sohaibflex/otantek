@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="website_tracking_service_view_form" model="ir.ui.view">
+        <field name="name">website.tracking.service.view.form.inherit.website_sale_facebook_capi</field>
+        <field name="model">website.tracking.service</field>
+        <field name="inherit_id" ref="website_sale_tracking_base.website_tracking_service_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='options']/group" position="inside">
+                <group string="Conversions API" name="fbp_options" attrs="{'invisible': [('type', '!=', 'fbp')]}">
+                    <field name="fb_capi_is_active" string="Activate" widget="boolean_toggle"/>
+                    <field name="fb_capi_access_token" attrs="{'invisible': [('fb_capi_is_active', '=', False)], 'required': [('fb_capi_is_active', '=', True)]}" class="o_text_overflow"/>
+                    <field name="fb_capi_test_event_code" attrs="{'invisible': [('fb_capi_is_active', '=', False)]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="website_tracking_service_view_tree" model="ir.ui.view">
+        <field name="name">website.tracking.service.view.tree.inherit.website_sale_facebook_capi</field>
+        <field name="model">website.tracking.service</field>
+        <field name="inherit_id" ref="website_sale_tracking_base.website_tracking_service_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="key" position="after">
+                <field name="fb_capi_is_active" attrs="{'invisible': [('type', '!=', 'fbp')]}" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="assets_frontend" name="TikTok Pixel Tracking Assets" inherit_id="website.assets_frontend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" defer="defer" src="/website_sale_tiktok_pixel/static/src/js/website_sale_tracking_tiktok_pixel.js"/>
+        </xpath>
+    </template>
+
+    <template id="website_layout" name="TikTok Pixel Website Tracking" inherit_id="website_tiktok_pixel.website_layout">
+        <xpath expr="//script[@name='tiktok-pixel-key']" position="attributes">
+            <attribute name="t-if">website and website.tracking_is_active and website.ttp_get_keys() and not editable</attribute>
+        </xpath>
+        <xpath expr="//script[@name='tiktok-pixel-script']" position="attributes">
+            <attribute name="t-if">website and website.tracking_is_active and website.ttp_get_keys() and not editable</attribute>
+        </xpath>
+    </template>
+
+</odoo>

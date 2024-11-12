@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template id="payment_tokens_list_code_otantik" inherit_id="payment.payment_tokens_list">
+        <xpath expr="//label[1]" position="after">
+            <t t-if="acq.is_cod">
+            <br/>
+                <t t-set="currency_amount_str" t-value="acq.format_value(acq.collection_fees,request.website.pricelist_id.currency_id)"/>
+                <t t-if="request.env.lang == 'en_US'">
+                    <span t-esc="currency_amount_str+ ' Collection Fees will be added.'"/>
+                </t>
+                <t t-elif="request.env.lang == 'ar_001'">
+                    <span t-esc="'سيتم اضافه '+str(acq.collection_fees)+' ريال سعودي رسوم تحصيل عند اختياركم للدفع عند الاستلام'"/>
+                </t>
+
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,48 @@
+<odoo>
+    <record id="action_sale_payment_transaction" model="ir.actions.act_window">
+        <field name="name">Payment Transactions</field>
+        <field name="res_model">payment.transaction</field>
+        <field name='view_mode'>tree,form</field>
+        <field name="domain">[('sale_order_ids','=',active_ids)]</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new payment transaction
+          </p>
+        </field>
+    </record>
+    <record id="Sale_Order_Form_Inherit_new" model="ir.ui.view">
+        <field name="name">Sale Order Form Inherit New</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+<!--                <field name="x_studio_payment_status"/>-->
+<!--                <field name="x_studio_delivery_tracking_number"/>-->
+                <field name="acquirer_reference"/>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <field name="transaction_ids" invisible="1"/>
+
+<!--                    <button name="view_payment_transactions" type="object" class="oe_stat_button" icon="fa-money"-->
+                    <button name="%(action_sale_payment_transaction)d" type="action" class="oe_stat_button" icon="fa-money"
+                attrs="{'invisible':[('transaction_ids','=',[])]}" groups="base.group_user">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Payment</span>
+                        <span class="o_stat_text">Transactions</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_move_form_inherit_new" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.new</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet//field[@name='payment_reference']" position="after">
+                <field name="acquirer_reference"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

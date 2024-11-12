@@ -1,0 +1,64 @@
+<odoo>
+    <record id="Sale_Order_Form_Inherit" model="ir.ui.view">
+        <field name="name">Sale Order Form Inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="replace">
+                <field name="product_uom_qty" sum="Total Qty"/>
+            </xpath>
+<!--            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">-->
+<!--                <field name="image" widget="image" width="35" hieght="65"/>-->
+<!--            </xpath>-->
+            <!-- <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                <field name="total_price"/>
+            </xpath> -->
+        </field>
+    </record>
+
+    <record id="sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">Sale Order form Inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="payment_reference"/>
+            </xpath>
+            <xpath expr="//group[@name='sale_header']/group[@name='order_details']" position="inside">
+                <field name="customer_notes"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_tree_inherit" model="ir.ui.view">
+        <field name="name">Sale Order tree Inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_total']" position="before">
+                <field name="payment_reference"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_search_inherit" model="ir.ui.view">
+        <field name="name">Sale Order search Inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="payment_reference"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_change_to_fully_invoiced" model="ir.actions.server">
+            <field name="name">Change to fully Invoice</field>
+            <field name="model_id" ref="model_sale_order"/>
+            <field name="binding_model_id" ref="model_sale_order"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">
+                action = records.change_to_fully_invoiced()
+            </field>
+        </record>
+</odoo>

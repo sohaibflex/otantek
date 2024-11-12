@@ -1,0 +1,28 @@
+<odoo>
+	<record model="ir.ui.view" id="view_cc_company_form">
+	    <field name="name">cc.company.form.inherit</field>
+	    <field name="model">res.company</field>
+	    <field name="inherit_id" ref="base.view_company_form"/>
+	    <field name="arch" type="xml">
+	        <xpath expr="//page" position="after">
+           		<page string="المعلومات">
+                	<group colspan="2">
+                		<group colspan="1">
+    	            	 	<field name="cc_name_ar" placeholder="أسم الشركة" string="Company Name"/>
+                	 	</group>
+                	 	<group>
+	                    	<label for="street" string="Address"/>
+	                    	<div class="o_address_format">
+	                        	<field name="cc_street_ar" placeholder="رقم البناية و الشارع" style="float:right;clear:both;" class="o_address_street"/>
+	                         	<field name="cc_street2_ar" placeholder="المنطقة و الرمز البريدي" class="o_address_street"/>
+	                         	<field name="cc_city_ar" placeholder="المدينة" class="o_address_city"/>
+	                         	<field name="cc_state_ar" class="o_address_state" placeholder="المنطقة" />
+	                         	<field name="cc_country_ar" class="o_address_country" placeholder="الدولة" />
+	                   		</div>
+	                 	</group>
+	                </group>
+            	</page>
+            </xpath>
+	    </field>
+	</record>
+</odoo>

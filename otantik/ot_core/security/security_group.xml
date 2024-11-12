@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="group_ot_account_move_buttons" model="res.groups">
+            <field name="name">Show Journal Entries Buttons</field>
+        </record>
+        <record id="group_ot_account_move_hr" model="res.groups">
+            <field name="name">Hide Journal Entries HR</field>
+        </record>
+    </data>
+</odoo>

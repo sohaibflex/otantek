@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="flex_report_delivery_document" inherit_id="stock.report_delivery_document">
+        <xpath expr="//table[@name='stock_move_table']" position="after">
+<!--            <tr>-->
+<!--                <td>-->
+
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <strong t-field="o.total_qty">-->
+
+<!--                    </strong>-->
+<!--                </td>-->
+<!--            </tr>-->
+            <div class="row">
+                <div class="col-6">
+
+                </div>
+                <div class="col-6 text-end">
+                    Total Quantity: <strong t-field="o.total_qty"></strong>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//table[@name='stock_move_line_table']" position="after">
+            <div class="row">
+                <div class="col-6">
+
+                </div>
+                <div class="col-6 text-end">
+                    Total Quantity: <strong t-field="o.total_qty"></strong>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

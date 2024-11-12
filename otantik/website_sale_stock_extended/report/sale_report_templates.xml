@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_new" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//span[@t-field='line.discount']" position='after'>
+            <t t-esc="round(line.discount,2)"/>
+        </xpath>
+        <xpath expr="//span[@t-field='line.discount']" position='attributes'>
+            <attribute name="style">display:none;</attribute>
+        </xpath>
+    </template>
+</odoo>

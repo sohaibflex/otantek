@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <template id="ot_report_saleorder_document" inherit_id="sale.report_saleorder_document">
+          <xpath expr="/t[1]/t[1]/t[2]/div[1]" position="attributes">
+            <attribute name="t-options-fields">['address', 'name', 'phone']</attribute>
+          </xpath>
+          <xpath expr="/t[1]/t[1]/t[2]/div[1]" position="attributes">
+            <attribute name="t-options-fields">['address', 'name', 'phone', 'mobile']</attribute>
+          </xpath>
+
+              <xpath expr="/t/t/div/table/thead/tr/th[2]" position="before">
+    <th>
+      <span>Image</span>
+    </th>
+              </xpath>
+            <xpath expr="/t/t/div/table/tbody/t[2]/tr/t[1]/td[2]" position="before">
+                <td>
+                    <span t-field="line.product_id.image_128" t-options-widget="&quot;image&quot;"/>
+                </td>
+            </xpath>
+              <xpath expr="/t/t/div/table/thead/tr/th[1]" position="replace">
+    <th name="th_seq" class="text-left">#</th>
+  </xpath>
+
+        </template>
+
+    </data>
+</odoo>

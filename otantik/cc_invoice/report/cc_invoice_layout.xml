@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="external_layout_cc">
+		<t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"/>
+    	</t>
+    	<t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company"/>
+    	</t>
+<!--		<div class="header">-->
+		<div class="header">
+
+        <table class="MsoTableGrid" style="width:100.0%;border-collapse:collapse;border:none" width="100%" cellspacing="0" cellpadding="0" border="1">
+            <tbody>
+                <tr>
+                    <td colspan="3" style="width:100.0%;border:solid windowtext 1.0pt;  padding:0in 0in 0in 0in" width="100%" valign="top">
+                        <table class="MsoTableGrid" style="width:100.0%;border-collapse:collapse;border:none" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                                <tr>
+                                    <td style="width:42.38%;padding:0in 5.4pt 0in 5.4pt" width="42%" valign="top">
+                                        <p class="MsoNormal" style="margin-bottom:0in;line-height:normal">
+                                            <b>
+                                                <span t-field="company.name"/>
+                                            </b>
+                                        </p>
+                                        <p class="MsoNormal" style="margin-bottom:0in;line-height:normal">
+                                            <span t-field="company.street"/>
+                                        </p>
+                                        <p class="MsoNormal" style="margin-bottom:0in;line-height:normal">
+                                            <span t-field="company.street2"/>
+                                        </p>
+                                        <p class="MsoNormal" style="margin-bottom:0in;line-height:normal">
+                                            <span t-field="company.city"/>
+                                            -
+                                            <span t-field="company.country_id"/>
+                                        </p>
+                                    </td>
+                                    <td style="width:17.54%;padding:0in 5.4pt 0in 5.4pt" width="17%">
+                                        <p class="MsoNormal" style="margin-bottom:0in;text-align:center;    line-height:normal" align="center">
+                                             <img  style="vertical-align:top!important;float:middle!important;max-height:65px;margin:5px 5px;" t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                                        </p>
+                                    </td>
+                                    <td style="width:40.06%;padding:0in 5.4pt 0in 5.4pt" width="40%" valign="top">
+                                        <p class="MsoNormal" style="margin-bottom:0in;text-align:right;    line-height:normal" align="right">
+                                            <b>
+                                               <span dir="RTL" style="font-family: almarai;font-size:12.0pt" t-field="company.cc_name_ar"/>
+                                            </b>
+                                        </p>
+                                        <p class="MsoNormal" style="margin-bottom:0in;text-align:right;    line-height:normal" align="right">
+                                            <span t-field="company.cc_street_ar" dir="RTL" style="font-family: almarai;" lang="AR-SA"/>
+                                        </p>
+                                        <p class="MsoNormal" style="margin-bottom:0in;text-align:right;   line-height:normal" align="right">
+                                            <span t-field="company.cc_street2_ar" dir="RTL" style="font-family: almarai;" lang="AR-SA"></span>
+                                        </p>
+                                        <p  class="MsoNormal" style="margin-bottom:0in;text-align:right;line-height:normal" align="right">
+                                            <span t-field="company.cc_city_ar" dir="RTL" style="font-family: almarai;" lang="AR-SA"/>
+                                            <span dir="RTL" style="font-family: almarai;" lang="AR-SA">-</span>
+                                            <span t-field="company.cc_country_ar" dir="RTL" style="font-family: almarai;" lang="AR-SA"/>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="width:100.0%;border:solid windowtext 1.0pt;  border-top:none;padding:0in 0in 0in 0in" width="100%" valign="top">
+                        <table class="MsoTableGrid" style="width:100.0%;border-collapse:collapse;border:none" width="100%" cellspacing="0" cellpadding="0" border="1">
+                            <tbody>
+                                <tr>
+                                    <td style="width:11.62%;border:none;padding:0in 2.15pt 0in 2.15pt" width="11%" valign="top">
+                                        <p class="MsoNormal" style="margin-bottom:0in;line-height:normal">CR. No.:</p>
+                                    </td>
+                                    <td style="width:16.92%;border:none;padding:0in 2.15pt 0in 2.15pt" width="16%" valign="top">
+                                        <span  t-field="company.company_registry" style="margin-bottom:0in;text-align:center;    line-height:normal" align="center"/>
+                                    </td>
+                                    <td style="width:21.86%;border:none;border-right:    solid windowtext 1.0pt;padding:0in 2.15pt 0in 2.15pt" width="21%" valign="top">
+                                        <p class="MsoNormal" style="margin-bottom:0in;line-height:normal">
+                                            <span dir="RTL" style="font-family: almarai;" lang="AR-SA">رقم السجل التجاري: </span>
+                                        </p>
+                                    </td>
+                                    <td style="width:13.32%;border:none;padding:0in 2.15pt 0in 2.15pt" width="13%" valign="top">
+                                        <p class="MsoNormal" style="margin-bottom:0in;text-align:right; line-height:normal" align="right">VAT No.:</p>
+                                    </td>
+                                    <td style="width:18.52%;border:none;padding:0in 2.15pt 0in 2.15pt" width="18%" valign="top">
+                                        <p class="MsoNormal" style="margin-bottom:0in;line-height:normal" align="center">
+                                             <span t-field="company.vat" style="margin-bottom:0in;text-align:center;    line-height:normal" align="center" />
+                                        </p>
+
+                                    </td>
+                                    <td style="width:17.74%;border:none;padding:0in 2.15pt 0in 2.15pt" width="17%" valign="top">
+                                        <p class="MsoNormal" style="margin-bottom:0in;text-align:right;    line-height:normal" align="right">
+                                            <span dir="RTL" style="font-family: almarai;">الرقم الضريبي:</span>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+          </tbody>
+         </table>
+
+
+
+        </div>
+
+        <div class="article o_report_layout_standard">
+
+            <t t-raw="0" />
+        </div>
+
+        <div class="footer">
+            <div class="text-center" style="border-top: 1px solid grey;color:#696969;">
+                <ul class="list-inline mb4">
+                    <li t-if="company.phone">Phone: <span t-field="company.phone"/></li>
+                    <li t-if="company.email">Email: <span t-field="company.email"/></li>
+                    <li t-if="company.website">Web: <span t-field="company.website"/></li>
+<!--                    <li t-if="company.vat"><t t-esc="company.country_id.vat_label or 'TIN'"/>: <span t-field="company.vat"/></li>-->
+                </ul>
+                <div name="financial_infos">
+                    <span t-field="company.report_footer"/>
+                </div>
+
+                <div class="text-muted">
+                    Page: <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+        </div>
+	</template>
+
+</odoo>

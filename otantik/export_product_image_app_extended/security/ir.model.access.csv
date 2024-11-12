@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_export_product_image_app_extended_export_product_image_app_extended,export_product_image_app_extended.export_product_image_app_extended,model_export_product_image_app_extended_export_product_image_app_extended,base.group_user,1,1,1,1

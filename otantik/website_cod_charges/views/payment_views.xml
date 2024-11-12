@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="acquirer_form_inherit_cod" model="ir.ui.view">
+        <field name="name">payment.acquirer.cod</field>
+        <field name="model">payment.acquirer</field>
+        <field name="inherit_id" ref="payment.acquirer_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//group[@name="availability"]' position='inside'>
+                <field name="is_cod" invisible="1"/>
+<!--                <field name="product_cod_id" domain="[('is_cod','=',True)]" attrs="{'invisible': [('is_cod', '!=', True)]}"/>-->
+<!--                <field name="collection_fees" attrs="{'invisible': [('is_cod', '!=', True)]}"/>-->
+                <field name="product_cod_id" invisible="1"/>
+                <field name="collection_fees" invisible="1"/>
+
+            </xpath>
+        </field>
+    </record>
+                    <record id="payment_term_cod_form" model="ir.ui.view">
+            <field name="name">account.payment.term.form.cod</field>
+            <field name="model">account.payment.term</field>
+            <field name="inherit_id" ref="account.view_payment_term_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//field[@name="company_id"]' position='before'>
+                        <field name="is_cod"/>
+                </xpath>
+            </field>
+        </record>
+
+</odoo>

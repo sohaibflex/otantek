@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="cart_recovery_view_tree" model="ir.ui.view">
+    <field name="name">cart.recovery.tree.view</field>
+    <field name="model">cart.recovery.settings</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name" />
+        <field name="start_from" />
+        <field name="followup_mail_count" />
+        <field name="cart_recovery_cron_shedular" />
+        <field name="website_id" />
+        <field name="website_published" />
+      </tree>
+    </field>
+  </record>
+
+  <record id="cart_recovery_view_form" model="ir.ui.view">
+      <field name="name">cart.recovery.form.view</field>
+      <field name="model">cart.recovery.settings</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button string="Execute Cron" type="object" name="cron_run" class="oe_highlight" />
+          </header>
+          <sheet>
+              <group col="4">
+                <field name="name"/>
+                <field name="followup_mail_count"/>
+                <field name="start_from" />
+                <field name="website_id" />
+                <field name="website_published" />
+                <field name="cart_recovery_cron_shedular" attrs="{'invisible': [('followup_mail_count', 'not in', ['one', 'two', 'three'])]}" />
+                <field name="cart_recovery_email_template_one"
+                  attrs="{'invisible': [('followup_mail_count', 'not in', ['one', 'two', 'three'])], 'required': [('followup_mail_count', 'in', ['two', 'two', 'three'])]}" />
+                <field name="cart_recovery_template_one_time" attrs="{'invisible': [('followup_mail_count', 'not in', ['one', 'two', 'three'])]}" />
+                <field name="cart_recovery_email_template_two"
+                  attrs="{'invisible': [('followup_mail_count', 'not in', ['two', 'three'])], 'required': [('followup_mail_count', 'in', ['two', 'three'])]}" />
+                <field name="cart_recovery_template_two_time" attrs="{'invisible': [('followup_mail_count', 'not in', ['two', 'three'])]}" />
+                <field name="cart_recovery_email_template_three"
+                  attrs="{'invisible': [('followup_mail_count', 'not in', ['three'])], 'required': [('followup_mail_count', 'in', ['three'])]}"  />
+                <field name="cart_recovery_template_three_time" attrs="{'invisible': [('followup_mail_count', 'not in', ['three'])]}" />
+              </group>
+          </sheet>
+        </form>
+      </field>
+  </record>
+
+  <record id="action_cart_recovery_template" model="ir.actions.act_window">
+    <field name="name">Abandoned Cart Recovery Settings</field>
+    <field name="res_model">cart.recovery.settings</field>
+    <!-- <field name="view_type">form</field> -->
+    <field name="view_mode">tree,form</field>
+    <field name="view_id" ref="cart_recovery_view_tree"/>
+    <field name="help">Please set website dependent field first to recover cart.</field>
+  </record>
+
+  <menuitem id="cart_recovery_orders" name="Abandoned Carts Recovery Settings"
+      action="action_cart_recovery_template"
+      parent="website_sale.menu_orders" sequence="10"/>
+</odoo>

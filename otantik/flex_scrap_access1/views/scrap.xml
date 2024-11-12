@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Inherit Form View to Modify it -->
+    <record id="stock_scrap_form_view_inherit_scrap" model="ir.ui.view">
+        <field name="name">stock.scrap.form.inherit.scrap</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//header" position="inside">
+                <button name="action_submit_to_manager" states="draft" string="Submit to Manager" type="object" class="oe_highlight"/>
+                <button name="action_manager_approval" states="submit_to_manager" string="Manager Approval" type="object" class="oe_highlight" groups="flex_scrap_access1.group_scrap_deleted"/>
+                <button name="find_employee" type="object" string="Find Employee"/>
+            </xpath>
+            <xpath expr="//button[@name='action_validate']" position="replace">
+                <button name="action_validate" states="manager_approval" string="Validate" type="object" class="oe_highlight" context="{'not_unlink_on_discard': True}" groups="flex_scrap_access1.group_validate_scrap"/>
+            </xpath>
+            <xpath expr="//field[@name='state']" position="attributes">
+                <attribute name="statusbar_visible">
+                    draft,submit_to_manager,manager_approval,done
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
